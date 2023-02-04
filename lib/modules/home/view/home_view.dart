@@ -27,7 +27,7 @@ class _HomeViewState extends State<HomeView> {
       appBar: AppBar(
         title: const Text('Home'),
       ),
-      body: FutureBuilder<List<UserResModel>>(
+      body: FutureBuilder<UserResModel>(
         future: homeService.getUserList(),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
@@ -44,13 +44,13 @@ class _HomeViewState extends State<HomeView> {
                 );
               } else {
                 return ListView.builder(
-                  itemCount: userList.length,
+                  itemCount: userList.data.length,
                   itemBuilder: (context, index) {
                     return ListTile(
-                      title: Text(userList[index].name),
-                      subtitle: Text(userList[index].website ?? ''),
+                      title: Text(userList.data[index].name),
+                      subtitle: Text(userList.data[index].website ?? ''),
                       onTap: () {
-                        final userId = userList[index].id;
+                        final userId = userList.data[index].id;
                         final route = MaterialPageRoute(
                           builder: (context) => UserDetailView(userId: userId),
                         );

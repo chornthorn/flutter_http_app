@@ -29,8 +29,8 @@ class _UserDetailViewState extends State<UserDetailView> {
       appBar: AppBar(
         title: const Text('User Detail'),
       ),
-      body: FutureBuilder<UserResModel>(
-        future: homeService.getUserById(widget.userId),
+      body: FutureBuilder<UserResModelData>(
+        // future: homeService.getUserById(widget.userId),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(

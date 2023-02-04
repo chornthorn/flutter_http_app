@@ -32,4 +32,29 @@ class LocalDatabase {
       )
     ''');
   }
+
+ // create
+  Future<int> insert(Map<String, dynamic> row,String table) async {
+    var dbClient = await database;
+    return await dbClient!.insert(table, row);
+  }
+
+  // read
+  Future<List<Map<String, dynamic>>> queryAll(String table) async {
+    var dbClient = await database;
+    return await dbClient!.query(table);
+  }
+
+  // update
+  Future<int> update(Map<String, dynamic> row,String table) async {
+    var dbClient = await database;
+    return await dbClient!.update(table, row,
+        where: 'id = ?', whereArgs: [row['id']]);
+  }
+
+  // delete
+  Future<int> delete(int id,String table) async {
+    var dbClient = await database;
+    return await dbClient!.delete(table, where: 'id = ?', whereArgs: [id]);
+  }
 }

@@ -24,7 +24,7 @@ class HomeService {
   // get one user by id
   Future<UserResModel> getUserById(int id) async {
     try {
-      final uri = Uri.parse('${baseUrl}/userss/$id');
+      final uri = Uri.parse('${baseUrl}/users/$id');
       final response = await http.get(uri);
       if (response.statusCode == 200) {
         return UserResModel.fromJson(jsonDecode(response.body));
